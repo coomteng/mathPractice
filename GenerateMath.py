@@ -76,17 +76,18 @@ def getQA(mathOp, N, rangeA, rangeB):
 
 if __name__ == '__main__':
     questionName, answerName = sys.argv[1:3]
-    range10 = Range(2, 10)
-    range100 = Range(2, 100)
-    range1000 = Range(2, 1000)
-    range10_1000 = Range(10, 1000)
-    range10_100 = Range(10, 100)
+    range10 = Range(2, 9)
+    range100 = Range(2, 99)
+    range1000 = Range(2, 999)
+    range10_1000 = Range(11, 999)
+    range10_100 = Range(11, 99)
     # qas = \
     #     getQA(Multiply, 7, range10_100, range10_100) + \
     #     getQA(Add, 6, range10_1000, range10_1000) + \
     #     getQA(Devide, 6, range100, range10) + \
     #     getQA(Minus, 6, range10_1000, range10_1000)
-    qas = getQA(Multiply, 5, range10_1000, range10_1000) + getQA(Multiply, 20, range10_100, range10_100)
+    qas = getQA(Multiply, 100, range10, range10_100)
+    qas += getQA(Multiply, 100, range10_100, range10)
     random.shuffle(qas)
     with open(questionName, 'w') as q:
         q.writelines(['( %d )  %s\n' %(i+1, qa.out())for i, qa in enumerate(qas)])
